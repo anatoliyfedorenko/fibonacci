@@ -19,9 +19,10 @@ func fib() func() *big.Int {
 }
 
 func main() {
-	f := fib()
 
 	http.HandleFunc("/fib", func(w http.ResponseWriter, r *http.Request) {
+		f := fib()
+
 		flusher, ok := w.(http.Flusher)
 		if !ok {
 			panic("expected http.ResponseWriter to be an http.Flusher")
